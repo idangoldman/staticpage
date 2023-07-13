@@ -1,0 +1,22 @@
+{
+  "name": "staticpage",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.4",
+    "yarn": ">=1.22.19"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "scripts": {
+    "build": "parcel build index.js",
+    "dev": "parcel index.js"
+  },
+  "devDependencies": {
+    "lodash": "^4.17.21",
+    "parcel": "^2.9.3"
+  }
+}
