@@ -1,4 +1,4 @@
-import { getNodeSelector } from './src/helpers.js';
+import { getNodeSelector } from './helpers.js';
 
 // Step 1: Select the HTML container element
 const containerElement = document.body; // You can modify this as needed

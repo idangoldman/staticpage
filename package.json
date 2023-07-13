@@ -12,8 +12,8 @@
     "defaults"
   ],
   "scripts": {
-    "build": "parcel build index.js",
-    "dev": "parcel index.js"
+    "build": "parcel build src/index.js",
+    "dev": "parcel src/index.js"
   },
   "devDependencies": {
     "lodash": "^4.17.21",
