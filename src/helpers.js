@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 export function getNodeSelector(node) {
   const selectors = [];
 
@@ -35,4 +37,16 @@ export function getNodeSelector(node) {
 
   // Join the selectors tree into a single selector
   return selectors.join('>');
+}
+
+export function createContext(node) {
+  const context = {
+    id: nanoid(),
+    parentTag: node.parentNode.tagName,
+    selector: getNodeSelector(node),
+    text: node.textContent.trim(),
+    timestamp: Date.now(),
+  };
+
+  return context;
 }
