@@ -1,22 +1,35 @@
+import { EXCLUDE_TAGS } from './constants.js';
 import { createContext } from './helpers.js';
 
-console.time('DOM traversal');
-const contentBlocks = [];
-const walker = document.createTreeWalker(
-  document.body,
-  NodeFilter.SHOW_TEXT,
-  null,
-  false
-);
-
-let node;
-while (node = walker.nextNode()) {
-  if (node.textContent.trim().length > 0) {
-    const context = createContext(node);
-    contentBlocks.push(context);
-  }
+const filterWalkerNodes = (node) => {
+  return EXCLUDE_TAGS.includes(node.parentNode.tagName)
+    ? NodeFilter.FILTER_REJECT
+    : NodeFilter.FILTER_ACCEPT;
 }
 
-console.log(contentBlocks);
+function domTraversal() {
+  const contentBlocks = [];
+
+  // add explude tags into createTreeWalker
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    filterWalkerNodes,
+  );
+
+  let node;
+  while (node = walker.nextNode()) {
+    if (node.textContent.trim().length > 0) {
+      contentBlocks.push(
+        createContext(node)
+      );
+    }
+  }
+
+  return contentBlocks;
+}
+
+console.time('DOM traversal');
+console.log(domTraversal.call());
 console.timeEnd('DOM traversal');
 console.log('staticpage/index.js');
